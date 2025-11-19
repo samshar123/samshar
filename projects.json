@@ -1,0 +1,59 @@
+[
+    {
+        "id": 1,
+        "company": "CRONOMIND AI",
+        "category": "Automation",
+        "title": "Building the AI-First Ecosystem",
+        "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+        "heroImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80",
+        "challenge": "Cronomind needed to enter a saturated CRM market. The challenge was to position them not just as a tool, but as an intelligent partner that automates business logic.",
+        "solution": "We architected a brand identity centered around 'The AI Workforce.' We built a custom Python-based backend that integrated with the marketing site to demonstrate live automation during the demo phase.",
+        "results": [
+            "300% Increase in Demo Bookings",
+            "45% Reduction in CAC",
+            "Featured in TechDaily"
+        ],
+        "gallery": [
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80"
+        ]
+    },
+    {
+        "id": 2,
+        "company": "KINDLED SERVICES",
+        "category": "SMM",
+        "title": "The 'Unparent' Viral Movement",
+        "thumbnail": "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&w=800&q=80",
+        "heroImage": "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&w=1600&q=80",
+        "challenge": "Mental health marketing often feels clinical and cold. Kindled needed to reach parents of toddlers in a way that felt supportive, not judgmental.",
+        "solution": "We launched 'Unparent'—an offline camp supported by an emotional digital campaign. We used raw, unfiltered parenting stories on Instagram to build community trust before the event launch.",
+        "results": [
+            "Sold out event in 48 Hours",
+            "10k+ Instagram Followers gained",
+            "Highest Engagement Rate in sector"
+        ],
+        "gallery": [
+            "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80"
+        ]
+    },
+    {
+        "id": 3,
+        "company": "DOTCO NEXTGEN",
+        "category": "Growth",
+        "title": "Scaling Startup User Acquisition",
+        "thumbnail": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        "heroImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
+        "challenge": "Dotco had a great MVP but zero users. They needed rapid acquisition with a very limited budget.",
+        "solution": "We implemented a 'High-Velocity Testing' framework. Running micro-campaigns across SEM and Social to find the lowest cost-per-acquisition (CPA) channel, then scaling it aggressively.",
+        "results": [
+            "0 to 5,000 Users in 3 Months",
+            "40% Drop in CPA",
+            "Seed Funding Secured"
+        ],
+        "gallery": [
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&w=800&q=80"
+        ]
+    }
+]

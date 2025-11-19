@@ -1,0 +1,35 @@
+[
+    {
+        "id": 1,
+        "title": "The Death of the Traditional Funnel: A Non-Linear Approach",
+        "category": "Strategy",
+        "date": "Nov 18, 2025",
+        "readTime": "5 Min Read",
+        "thumbnail": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80",
+        "heroImage": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1600&q=80",
+        "summary": "Why the AIDA model is failing modern brands and how to map the 'Messy Middle' of consumer decision making.",
+        "content": "<p>The linear path from Awareness to Action is a myth. In 2025, consumer journeys are chaotic loops of exploration and evaluation.</p><h3>The 'Messy Middle'</h3><p>Google coined this term to describe the complex space between a trigger and a purchase. Customers don't just move down a funnel; they expand and contract their options continuously.</p><blockquote>'Your brand must be present not just at the start, but during the critical evaluation phase where logic battles emotion.'</blockquote><p>To succeed, we must shift from 'Funnel Marketing' to 'Ecosystem Marketing'—creating touchpoints that validate the purchase decision at every random interval of the user's journey.</p>"
+    },
+    {
+        "id": 2,
+        "title": "Brand vs. Performance: Ending the Internal War",
+        "category": "Branding",
+        "date": "Oct 22, 2025",
+        "readTime": "7 Min Read",
+        "thumbnail": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80",
+        "heroImage": "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1600&q=80",
+        "summary": "Performance marketing captures demand, but Brand marketing creates it. Here is how to balance the budget for sustainable growth.",
+        "content": "<p>CFOs love Performance Marketing because it's measurable. CMOs love Brand Marketing because it builds longevity. The conflict between the two is destroying ROI.</p><h3>The 60/40 Rule</h3><p>Research from Les Binet and Peter Field suggests an optimal split: 60% of budget towards long-term brand building, and 40% towards short-term sales activation.</p><p>If you over-index on performance (PPC/Meta Ads), you hit a ceiling where CAC (Customer Acquisition Cost) becomes unsustainable. You need Brand efforts to lower that CAC over time by creating organic mental availability.</p>"
+    },
+    {
+        "id": 3,
+        "title": "Neuro-Marketing: The Psychology of Pricing",
+        "category": "Psychology",
+        "date": "Sep 15, 2025",
+        "readTime": "4 Min Read",
+        "thumbnail": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        "heroImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
+        "summary": "How to use anchoring, decoy effects, and charm pricing to influence perceived value without devaluing your product.",
+        "content": "<p>Price is not just a math problem; it's a perception problem. How a customer feels about a price tag is often more important than the number itself.</p><h3>The Anchor Effect</h3><p>Always present a premium option first. This 'Anchor' resets the customer's internal baseline, making the middle-tier option (your target sell) feel like a bargain in comparison.</p><p>We tested this with a SaaS client: Introducing a $499 'Enterprise' tier immediately increased sales of the $199 'Pro' tier by 22%, simply because it no longer looked like the most expensive option.</p>"
+    }
+]

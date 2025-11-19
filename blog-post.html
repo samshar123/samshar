@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article | UA Samshar</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="blog.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="nav-wrapper">
+        <nav class="gallery-nav">
+            <a href="blog.html" class="brand-identity">
+                <span class="brand-name">← BACK TO JOURNAL</span>
+            </a>
+        </nav>
+    </div>
+
+    <main id="article-view">
+        <div class="loading">Loading Data...</div>
+    </main>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = parseInt(urlParams.get('id'));
+
+        fetch('blogs.json')
+            .then(res => res.json())
+            .then(data => {
+                const post = data.find(p => p.id === postId);
+                
+                if(post) {
+                    const html = `
+                        <article class="single-article">
+                            
+                            <header class="article-header container">
+                                <div class="article-meta">
+                                    <span class="tag">${post.category}</span>
+                                    <span class="divider">/</span>
+                                    <span class="time">${post.readTime}</span>
+                                </div>
+                                <h1 class="article-title">${post.title}</h1>
+                                <span class="publish-date">${post.date}</span>
+                            </header>
+
+                            <div class="hero-image-wrapper">
+                                <img src="${post.heroImage}" alt="${post.title}">
+                            </div>
+
+                            <div class="article-body container">
+                                ${post.content} 
+                            </div>
+
+                            <div class="article-footer container">
+                                <a href="blog.html" class="next-btn">Read More Articles →</a>
+                            </div>
+
+                        </article>
+                    `;
+                    document.getElementById('article-view').innerHTML = html;
+                }
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2497 @@
+/* VARIABLES & RESET */
+:root {
+    --bg-color: #0a0a0a;
+    --text-color: #ffffff;
+    --accent-yellow: #FFE600; /* Cyber Yellow */
+    --gray-dark: #1c1c1c;
+    --gray-light: #888888;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    overflow-x: hidden; /* Prevent scrollbar from shapes */
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+/* UTILITIES */
+.container {
+    width: 88%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/* --- HERO SECTION (FIXED LAYOUT) --- */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center; /* Vertically centers everything */
+    position: relative;
+    overflow: hidden; /* Prevents the rotating circle from causing scrollbars */
+     /* Adds breathing room top/bottom */
+}
+
+.hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Equal 50/50 split */
+    gap: 4rem; /* Ensures safe distance between Text and Image */
+    align-items: center;
+    position: relative;
+    z-index: 2; /* Keeps content above background shapes */
+}
+
+/* --- TEXT SIDE (LEFT) --- */
+.hero-text {
+    max-width: 600px; /* Prevents text from stretching too wide */
+}
+
+/* --- VISUAL SIDE (RIGHT - FIXED PLACEMENT) --- */
+.hero-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    min-height: 500px; /* Reserves space so it doesn't collapse */
+}
+
+/* 1. The Rotating Circle (Constrained) */
+.graphic-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  padding-bottom: 95%;
+  border: 1px dashed var(--gray-light);
+  border-radius: 50%;
+  z-index: -1;
+  animation: spin-slow 40s linear infinite;
+}
+
+/* 2. The Main Arch Image (Responsive) */
+.image-arch {
+    position: relative;
+    width: 100%; 
+    max-width: 340px; /* Limits maximum size */
+    aspect-ratio: 3/4; /* Maintains shape regardless of width */
+    background: #000;
+    border-radius: 160px 160px 20px 20px;
+    overflow: hidden;
+    border: 2px solid var(--gray-dark);
+    box-shadow: 20px 20px 0 rgba(0,0,0,0.5); /* Hard shadow */
+    z-index: 10;
+}
+
+.image-arch img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+   
+}
+
+/* 3. Floating Stat Card (Anchored) */
+.floating-card {
+    position: absolute;
+    bottom: 10%; /* Uses % so it moves with the container */
+    right: 5%;   /* Uses % so it stays inside the container */
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 15px 25px;
+    border: 1px solid var(--gray-dark);
+    border-left: 4px solid var(--accent-yellow);
+    z-index: 20;
+    animation: float 6s ease-in-out infinite;
+    min-width: 160px;
+}
+
+
+/* --- ABOUT SECTION STYLING --- */
+.about-section {
+    background-color: #0f0f0f; /* Slightly lighter black for contrast */
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+}
+
+.about-split {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr; /* Image narrower, Text wider */
+    gap: 80px;
+    align-items: center;
+}
+
+/* --- VISUAL: ID CARD STYLE --- */
+.about-visual {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.id-card-wrapper {
+    background: #fff; /* White card contrast */
+    padding: 15px;
+    width: 100%;
+    max-width: 320px;
+    transform: rotate(-3deg); /* Stylish tilt */
+    box-shadow: 20px 20px 0 rgba(20, 20, 20, 0.8);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.id-card-wrapper:hover {
+    transform: rotate(0deg) scale(1.02); /* Straighten on hover */
+}
+
+.id-header {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: #000;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.id-photo {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #000;
+    overflow: hidden;
+    filter: grayscale(100%);
+}
+
+.id-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.id-footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #000;
+}
+
+.barcode {
+    font-family: 'Courier New', monospace;
+    font-weight: 900;
+    letter-spacing: -2px;
+    font-size: 1.2rem;
+}
+
+.id-role {
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* The "Sticker" Badge */
+.sticker-badge {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: var(--accent-yellow);
+    color: #000;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 0.8rem;
+    text-align: center;
+    line-height: 1;
+    transform: rotate(15deg);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+
+/* --- CONTENT SIDE --- */
+.about-content .text-left {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 3.5rem;
+}
+
+.sub-head {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 30px;
+    font-weight: 400;
+    border-left: 3px solid var(--accent-yellow);
+    padding-left: 20px;
+}
+
+.seo-text p {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    line-height: 1.7;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-seriff;
+}
+
+.seo-text strong {
+    color: #fff;
+    font-weight: 600;
+    border-bottom: 1px solid var(--accent-yellow); /* Underline key terms */
+}
+
+.xp-tags {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    border: 1px solid var(--gray-light);
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+.tag:hover {
+    background: var(--accent-yellow);
+    color: #000;
+    border-color: var(--accent-yellow);
+}
+
+.btn-text {
+    display: inline-block;
+    margin-top: 30px;
+    color: var(--accent-yellow);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s;
+}
+
+.btn-text:hover {
+    border-bottom: 1px solid var(--accent-yellow);
+    padding-bottom: 5px;
+}
+
+/* --- RESPONSIVE ABOUT --- */
+@media (max-width: 968px) {
+    .about-split {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .about-visual {
+        order: 1;
+    }
+    
+    .about-content {
+        order: 2;
+        text-align: left; /* Keep text left for readability */
+    }
+    
+    .about-content .text-left {
+        font-size: 2.5rem;
+    }
+}
+
+
+/* --- RESPONSIVE FIXES --- */
+@media (max-width: 968px) {
+    .hero-split {
+        grid-template-columns: 1fr; /* Stack into 1 column */
+        text-align: center; /* Center text */
+        gap: 60px;
+    }
+    .hero{
+        padding-bottom: 50px;
+    }
+    .hero-text {
+        margin: 0 auto; /* Center the text block */
+        order: 1; /* Text first */
+    }
+
+    .hero-visual {
+        order: 2; /* Image second */
+        min-height: 400px;
+        width: 100%;
+    }
+
+    .hero-btns {
+        justify-content: center;
+    }
+
+
+    
+    /* Fix circle size on mobile */
+    .graphic-circle {
+        width: 400px;
+        height: 400px;
+        padding-bottom: 0;
+    }
+    
+    /* Adjust card position for mobile */
+    .floating-card {
+        right: 10%;
+        bottom: 0;
+    }
+}
+
+.section { padding: 100px 0; }
+
+.dot { color: var(--accent-yellow); }
+
+/* BACKGROUND GRAPHICS */
+.bg-shape {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    opacity: 0.4;
+}
+
+.shape-1 {
+    top: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: var(--accent-yellow);
+}
+
+.shape-2 {
+    bottom: 10%;
+    right: -5%;
+    width: 400px;
+    height: 400px;
+    background: #333;
+}
+
+/* --- BENTO GRID SYSTEM --- */
+.bento-section {
+    background-color: #080808;
+    padding-bottom: 150px;
+    position: relative;
+}
+
+.bento-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 20px;
+}
+
+.live-indicator {
+    font-family: 'Courier New', monospace;
+    color: var(--accent-yellow);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.blink-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--accent-yellow);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent-yellow);
+    animation: blink 1s infinite;
+}
+
+/* --- GRID LAYOUT ENGINE --- */
+.bento-grid {
+    display: grid;
+    /* This creates a 4-column grid automatically */
+    grid-template-columns: repeat(4, 1fr);
+    /* Defines standard row height */
+    grid-auto-rows: minmax(180px, auto);
+    gap: 20px;
+}
+
+/* --- CARD BASE STYLES --- */
+.bento-card {
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid #333;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    backdrop-filter: blur(10px);
+}
+
+.card-content {
+    padding: 25px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+/* Hover Effect: Glow Border & Lift */
+.bento-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-yellow);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255, 230, 0, 0.1);
+    background: rgba(30, 30, 30, 0.8);
+}
+
+/* --- TYPOGRAPHY --- */
+.card-badge {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--gray-light);
+    border: 1px solid #444;
+    padding: 4px 8px;
+    border-radius: 4px;
+    align-self: flex-start;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.bento-card h3 {
+    font-size: 1.5rem;
+    font-family: var(--font-display);
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.bento-card h4 {
+    font-size: 0.9rem;
+    color: var(--accent-yellow);
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bento-card p {
+    font-size: 0.85rem;
+    color: #bbb;
+    line-height: 1.5;
+}
+
+/* --- GRID SPANS (Sizing Control) --- */
+/* Spans 2 columns wide */
+.hero-card {
+    grid-column: span 2;
+    grid-row: span 2; /* Tall & Wide */
+    background: linear-gradient(145deg, #111, #0a0a0a);
+}
+
+/* Spans 2 rows high */
+.tall-card {
+    grid-column: span 1;
+    grid-row: span 2;
+}
+
+/* Spans 2 columns wide (Terminal) */
+.wide-card {
+    grid-column: span 2;
+}
+
+/* --- SPECIFIC CARD STYLING --- */
+
+/* 1. Hero Card (Cronomind) */
+.hero-card h3 { font-size: 2.5rem; }
+.hero-card p { font-size: 1.1rem; max-width: 90%; margin-bottom: 20px; }
+.tech-row { display: flex; gap: 10px; margin-top: auto; }
+.tech-row span { 
+    background: #222; color: #fff; 
+    padding: 5px 10px; font-size: 0.75rem; border-radius: 4px; 
+}
+.bg-icon {
+    position: absolute; bottom: -20px; right: -20px;
+    font-size: 8rem; font-weight: 900; color: rgba(255,255,255,0.03);
+    z-index: 0;
+}
+
+/* 2. Tall Card (Kindled) */
+.stat-box {
+    margin: 20px 0;
+    border-left: 2px solid var(--accent-yellow);
+    padding-left: 15px;
+}
+.stat-num { display: block; font-size: 3rem; font-weight: 700; color: #fff; line-height: 1; }
+.stat-label { font-size: 0.7rem; text-transform: uppercase; color: #888; }
+.vertical-tech {
+    margin-top: auto;
+    display: flex; flex-direction: column; gap: 8px;
+}
+.vertical-tech span {
+    font-family: 'Courier New'; font-size: 0.7rem; color: #666;
+}
+.vertical-tech span::before { content: '> '; color: var(--accent-yellow); }
+
+/* 3. Terminal Card (Visual) */
+.terminal-card {
+    background: #050505;
+    border: 1px solid #333;
+    font-family: 'Courier New', monospace;
+}
+.terminal-header {
+    display: flex; align-items: center; gap: 6px;
+    padding-bottom: 10px; border-bottom: 1px solid #222; margin-bottom: 10px;
+}
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+.cmd-title { margin-left: 10px; font-size: 0.7rem; color: #666; }
+
+.terminal-body p { font-size: 0.8rem; margin-bottom: 5px; color: #ddd; }
+.terminal-body .success { color: #27c93f; }
+.terminal-body .blink { color: var(--accent-yellow); animation: blink 1s infinite; }
+
+/* --- RESPONSIVE BENTO --- */
+@media (max-width: 1024px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Columns on Tablet */
+    }
+    .hero-card { grid-column: span 2; }
+    .tall-card { grid-column: span 1; grid-row: span 1; } /* Stop spanning rows */
+    .wide-card { grid-column: span 2; }
+}
+
+@media (max-width: 600px) {
+    .bento-grid {
+        grid-template-columns: 1fr; /* 1 Column on Mobile */
+    }
+    .hero-card, .tall-card, .wide-card {
+        grid-column: span 1;
+        grid-row: auto;
+    }
+    .hero-card h3 { font-size: 1.8rem; }
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 6%;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--accent-yellow); }
+
+.nav-cta {
+    border: 1px solid var(--text-color);
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+.nav-cta:hover {
+    background: var(--accent-yellow);
+    border-color: var(--accent-yellow);
+    color: black;
+}
+
+/* HERO SECTION */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 60px;
+}
+
+.tagline {
+    font-family: var(--font-body);
+    color: var(--accent-yellow);
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: 6rem; /* Massive Text */
+    line-height: 0.9;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--text-color);
+}
+
+
+
+.hero-sub {
+    max-width: 500px;
+    color: var(--gray-light);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+.hero-btns { display: flex; gap: 20px; }
+
+.btn {
+    padding: 15px 35px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn:hover { transform: translate(-3px, -3px); }
+
+.btn-main {
+    background: var(--accent-yellow);
+    color: black;
+    border: none;
+}
+
+.btn-outline {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+}
+
+/* MARQUEE STRIP */
+.marquee-strip {
+    background: var(--accent-yellow);
+    color: black;
+    padding: 15px 0;
+    overflow: hidden;
+    transform: rotate(-2deg) scale(1.05); /* Slight tilt for artistic effect */
+    margin: 20px 0;
+}
+
+.marquee-content {
+    white-space: nowrap;
+    font-weight: 800;
+    font-size: 1.2rem;
+    font-family: var(--font-display);
+    animation: scroll 20s linear infinite;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* SERVICES */
+/* --- COMMAND DECK SECTION --- */
+.command-section {
+    background-color: #050505;
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated Cyber Background */
+.cyber-grid-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 230, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 230, 0, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    transform: perspective(500px) rotateX(60deg); /* 3D Plane Effect */
+    transform-origin: top center;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+.command-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.status-badge {
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+    color: var(--accent-yellow);
+    border: 1px solid var(--accent-yellow);
+    padding: 5px 10px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.blink-dot {
+    width: 6px; height: 6px; background: var(--accent-yellow);
+    border-radius: 50%; animation: blink 1s infinite;
+}
+
+/* --- THE GRID --- */
+.spotlight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- THE HOLOGRAPHIC CARD --- */
+.command-card {
+    background: rgba(20, 20, 20, 0.4);
+    backdrop-filter: blur(10px); /* Glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+/* SPOTLIGHT GLOW (Via JS) */
+.command-card::before {
+    content: "";
+    position: absolute;
+    height: 100%; width: 100%; top: 0; left: 0;
+    background: radial-gradient(
+        600px circle at var(--mouse-x) var(--mouse-y), 
+        rgba(255, 230, 0, 0.08), 
+        transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+.spotlight-grid:hover .command-card::before { opacity: 1; }
+
+/* HOVER STATE: LIFT & GLOW */
+.command-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-color: rgba(255, 230, 0, 0.3);
+}
+
+/* --- THE HOLO-SCANNER (Catchy Animation) --- */
+/* .scan-line {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 20px;
+    background: linear-gradient(to bottom, transparent, var(--accent-yellow), transparent);
+    opacity: 0.3;
+    transform: translateY(-100%);
+    transition: none;
+    pointer-events: none;
+    z-index: 2;
+} */
+
+/* Scan only on hover */
+.command-card:hover .scan-line {
+    animation: scan-down 1.5s linear infinite;
+}
+
+@keyframes scan-down {
+    0% { transform: translateY(-100%); opacity: 0; }
+    10% { opacity: 0.5; }
+    90% { opacity: 0.5; }
+    100% { transform: translateY(400px); opacity: 0; }
+}
+
+/* --- CORNER BRACKETS (Tech Look) --- */
+.corner {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-color: var(--accent-yellow);
+    border-style: solid;
+    border-width: 0;
+    transition: all 0.3s ease;
+    opacity: 0;
+    z-index: 3;
+}
+
+.top-left { top: 0; left: 0; border-top-width: 2px; border-left-width: 2px; }
+.top-right { top: 0; right: 0; border-top-width: 2px; border-right-width: 2px; }
+.bottom-left { bottom: 0; left: 0; border-bottom-width: 2px; border-left-width: 2px; }
+.bottom-right { bottom: 0; right: 0; border-bottom-width: 2px; border-right-width: 2px; }
+
+.command-card:hover .corner {
+    opacity: 1;
+    width: 20px; height: 20px; /* Expand on hover */
+}
+
+/* --- CONTENT STYLING --- */
+.card-content {
+    padding: 40px 30px;
+    position: relative;
+    z-index: 2;
+}
+
+.icon-wrapper {
+    width: 60px; height: 60px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 25px;
+    transition: all 0.3s;
+}
+
+.command-card:hover .icon-wrapper {
+    background: var(--accent-yellow);
+    color: #000;
+    box-shadow: 0 0 15px var(--accent-yellow);
+    transform: rotateY(180deg); /* Flip Effect */
+}
+
+.command-card h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 15px;
+    line-height: 1;
+}
+
+.command-card p {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* TECH SPECS (Bottom Tags) */
+.tech-spec {
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 15px;
+}
+
+.tech-spec span {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: var(--accent-yellow);
+    background: rgba(255, 230, 0, 0.05);
+    padding: 4px 8px;
+    border-radius: 2px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    .spotlight-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+    .spotlight-grid { grid-template-columns: 1fr; gap: 20px; }
+    .command-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .command-card:hover .scan-line { animation: none; } /* Disable heavy animation on mobile */
+    .corner { opacity: 0.5; } /* Always show corners slightly on mobile */
+}
+/* --- STICKY STACK SECTION --- */
+.stack-section {
+    background-color: #050505;
+    padding: 100px 0;
+    position: relative;
+}
+
+.stack-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.stack-header h2 {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: #fff;
+}
+
+.stack-header p {
+    font-family: 'Courier New', monospace;
+    color: var(--gray-light);
+    margin-top: 10px;
+}
+
+/* --- THE CARDS --- */
+.cards-wrapper {
+    position: relative;
+    /* This padding ensures there is space to scroll */
+    padding-bottom: 10vh; 
+}
+
+.stack-card {
+    /* KEY MAGIC: Sticky Positioning */
+    position: sticky;
+    top: 10vh; /* Distance from top where it sticks */
+    
+    height: 70vh; /* Card height */
+    width: 100%;
+    margin-bottom: 5vh; /* Space between cards initially */
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.5); /* Shadow moves UP */
+    transform-origin: center top;
+    transition: transform 0.3s ease;
+}
+
+/* Stagger the sticky tops so they overlap nicely */
+#card-1 { top: 10vh; background: #111; }
+#card-2 { top: 12vh; background: #151515; }
+#card-3 { top: 14vh; background: #1a1a1a; }
+#card-4 { top: 16vh; background: #1f1f1f; }
+#card-5 { top: 18vh; background: #222; }
+.final-cta { top: 20vh; height: 50vh; background: var(--accent-yellow); color: #000; }
+
+/* --- CARD CONTENT LAYOUT --- */
+.card-body {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr; /* Text vs Image ratio */
+    height: 100%;
+}
+
+/* Left Side (Text) */
+.card-left {
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid #222;
+    background: rgba(20,20,20,0.5);
+    backdrop-filter: blur(10px);
+}
+
+.stack-num {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.card-left h3 {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: #fff;
+    margin-bottom: 20px;
+    line-height: 0.9;
+}
+
+.stack-tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.stack-tags span {
+    border: 1px solid #444;
+    padding: 5px 15px;
+    font-size: 0.75rem;
+    color: var(--accent-yellow);
+    border-radius: 50px;
+    text-transform: uppercase;
+}
+
+.card-left p {
+    color: #aaa;
+    font-size: 1rem;
+    margin-bottom: 40px;
+    max-width: 400px;
+}
+
+.btn-stack {
+    font-family: 'Courier New', monospace;
+    color: #fff;
+    border-bottom: 1px solid var(--accent-yellow);
+    display: inline-block;
+    width: fit-content;
+    padding-bottom: 5px;
+    transition: all 0.3s;
+}
+
+.btn-stack:hover {
+    color: var(--accent-yellow);
+    padding-left: 10px; /* Slide effect */
+}
+
+/* Right Side (Image) */
+.card-right {
+    height: 100%;
+    overflow: hidden;
+}
+
+.card-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%);
+    transition: transform 0.5s, filter 0.5s;
+}
+
+/* Hover Effect */
+.stack-card:hover .card-right img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+}
+
+/* --- FINAL CTA CARD --- */
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.final-cta h2 {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+.big-cta-btn {
+    background: #000;
+    color: #fff;
+    padding: 20px 40px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+
+.big-cta-btn:hover {
+    transform: scale(1.05);
+}
+
+/* --- RESPONSIVE DESIGN (Crucial Part) --- */
+@media (max-width: 1024px) {
+    .card-body {
+        grid-template-columns: 1fr; /* Stack vertically inside card */
+        grid-template-rows: 1fr 1fr;
+    }
+    
+    .card-left {
+        order: 2; /* Text bottom */
+        padding: 30px;
+        border-right: none;
+        border-top: 1px solid #222;
+    }
+    
+    .card-right {
+        order: 1; /* Image top */
+    }
+    
+    .stack-card {
+        height: 80vh; /* Taller card on tablets */
+    }
+    
+    .card-left h3 { font-size: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+    .stack-header h2 { font-size: 2rem; }
+    
+    .stack-card {
+        height: 85vh; /* Take up most of screen on mobile */
+        top: 10vh !important; /* Stick near top */
+        margin-bottom: 20px;
+    }
+    
+    /* Reset offsets for mobile to keep it simple */
+    #card-1, #card-2, #card-3, #card-4, #card-5 { top: 10vh; }
+
+    .card-body {
+        grid-template-rows: 40% 60%; /* Less image, more text space */
+    }
+
+    .card-left { padding: 25px; }
+    .stack-num { font-size: 3rem; margin-bottom: 10px; }
+    .card-left h3 { font-size: 2rem; margin-bottom: 15px; }
+    .card-left p { font-size: 0.9rem; margin-bottom: 20px; }
+    
+    .final-cta h2 { font-size: 2.5rem; }
+    .big-cta-btn { padding: 15px 30px; font-size: 1rem; }
+}
+
+
+/* --- VORTEX CONTACT SECTION --- */
+.vortex-section {
+    background-color: #000;
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden; /* Crucial for background effects */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px; /* For 3D transforms */
+}
+
+/* Background Vortex Glow */
+.vortex-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background: radial-gradient(circle at center, rgba(255, 230, 0, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: vortex-pulse 6s infinite ease-in-out alternate;
+    z-index: 0;
+}
+
+@keyframes vortex-pulse {
+    0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.4; }
+    100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+}
+
+.vortex-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+.contact-card-vortex {
+    background: rgba(10, 10, 10, 0.7);
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 60px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d; /* For the tilt */
+}
+
+/* 3D Tilt on Hover */
+.contact-card-vortex:hover {
+    transform: rotateX(5deg) rotateY(-5deg) scale(1.01);
+    box-shadow: 0 20px 80px rgba(255, 230, 0, 0.1);
+}
+
+/* --- CARD HEADER --- */
+.card-header-vortex {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.card-header-vortex .prefix {
+    font-family: 'Courier New', monospace;
+    color: var(--accent-yellow);
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.card-header-vortex h2 {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.card-header-vortex .subtext {
+    font-family: 'Courier New', monospace;
+    color: #888;
+    font-size: 1rem;
+    display: block;
+}
+
+/* --- MAIN CTA (Holographic Button) --- */
+.main-cta-vortex {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 10;
+}
+
+.holographic-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 50px;
+    background: rgba(255, 230, 0, 0.1); /* Slightly transparent yellow */
+    border: 2px solid var(--accent-yellow);
+    color: var(--accent-yellow);
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(255, 230, 0, 0.4);
+}
+
+.holographic-button:hover {
+    color: #000;
+    background: var(--accent-yellow);
+    box-shadow: 0 0 30px rgba(255, 230, 0, 0.8);
+    transform: scale(1.05);
+}
+
+/* Internal Scanline Effect */
+.scanline-holographic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0s, opacity 0s;
+    pointer-events: none;
+    animation: scanline-vortex 0.8s infinite linear;
+    animation-play-state: paused; /* Pause by default */
+}
+
+.holographic-button:hover .scanline-holographic {
+    opacity: 1;
+    animation-play-state: running; /* Run on hover */
+}
+
+@keyframes scanline-vortex {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(calc(100% - 3px)); }
+}
+
+/* Background distortion for holographic feel */
+.button-backdrop {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="10" height="10" fill="transparent"/><rect x="0" y="0" width="1" height="1" fill="rgba(255,255,255,0.05)"/></svg>');
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: -1;
+}
+.holographic-button:hover .button-backdrop {
+    opacity: 0.8;
+}
+
+
+/* Main Holographic Glow (Expands on hover) */
+.holographic-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 230, 0, 0.4);
+    border-radius: 50%;
+    filter: blur(30px);
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -2; /* Behind the button */
+}
+
+.holographic-button:hover + .holographic-glow {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 1;
+}
+
+/* --- INFO GRID --- */
+.info-grid-vortex {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    border-top: 1px dashed #333; /* Dashed border for tech feel */
+    padding-top: 60px;
+    margin-top: 60px;
+}
+
+.grid-segment h3 {
+    font-family: 'Courier New', monospace;
+    color: #666;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.network-link, .nav-link {
+    display: block;
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.network-link:hover, .nav-link:hover {
+    color: var(--accent-yellow);
+    transform: translateX(5px);
+}
+
+.grid-segment p {
+    color: #ccc;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+/* --- FOOTER BOTTOM --- */
+.footer-bottom-vortex {
+    text-align: center;
+    margin-top: 80px;
+    border-top: 1px solid #222;
+    padding-top: 30px;
+    font-family: 'Courier New', monospace;
+    color: #666;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-to-top-vortex {
+    color: #fff;
+    border: 1px solid #333;
+    padding: 8px 15px;
+    border-radius: 50px;
+    transition: all 0.3s;
+}
+
+.back-to-top-vortex:hover {
+    background: #fff;
+    color: #000;
+}
+
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 1024px) {
+    .card-header-vortex h2 { font-size: 3rem; }
+    .holographic-button { font-size: 1.2rem; padding: 20px 40px; }
+    .info-grid-vortex { grid-template-columns: 1fr; gap: 60px; }
+    .footer-bottom-vortex { flex-direction: column; gap: 20px; }
+}
+
+@media (max-width: 768px) {
+    .vortex-section { padding: 40px 0; }
+    .contact-card-vortex { padding: 30px; }
+    .card-header-vortex h2 { font-size: 2.2rem; }
+    .card-header-vortex .subtext { font-size: 0.9rem; }
+    .holographic-button { font-size: 1rem; padding: 15px 30px; letter-spacing: 2px; }
+    .info-grid-vortex { padding-top: 30px; margin-top: 30px; }
+    .network-link, .nav-link { font-size: 1rem; }
+    .footer-bottom-vortex { font-size: 0.7rem; }
+}
+/* FOOTER */
+/* --- BROADCAST FOOTER --- */
+.broadcast-footer {
+    background-color: #000;
+    color: #fff;
+    border-top: 1px solid #222;
+    padding-top: 60px;
+    overflow: hidden;
+}
+
+/* 1. Utility Grid (Top) */
+.footer-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 80px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.meta-col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.meta-label {
+    color: var(--accent-yellow);
+    margin-bottom: 5px;
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.meta-links a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.meta-links a:hover {
+    color: var(--accent-yellow);
+    padding-left: 5px; /* Slide effect */
+}
+
+.center-align { text-align: center; }
+.right-align { text-align: right; }
+
+/* 2. The Infinite Action Bar */
+.broadcast-bar {
+    display: block;
+    background: var(--accent-yellow);
+    color: #000;
+    text-decoration: none;
+    padding: 40px 0;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.broadcast-bar:hover {
+    background: #fff; /* Flash white on interaction */
+    transform: translateY(-5px); /* Lift up slightly */
+}
+
+.ticker-track {
+    display: flex;
+    white-space: nowrap;
+    will-change: transform;
+    animation: ticker-scroll 15s linear infinite;
+}
+
+/* Pause scrolling when user hovers to make clicking easier */
+.broadcast-bar:hover .ticker-track {
+    animation-play-state: paused; 
+}
+
+.ticker-item {
+    font-family: var(--font-display); /* Your big font */
+    font-size: 5rem; /* MASSIVE TEXT */
+    font-weight: 900;
+    text-transform: uppercase;
+    padding-right: 40px; /* Spacing between repeats */
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.outline {
+    color: transparent;
+    -webkit-text-stroke: 2px #000; /* Hollow text effect for separators */
+}
+
+
+/* --- EXPERTISE SECTION (EDITORIAL STYLE) --- */
+.expertise-section {
+    background-color: #050505;
+    padding: 150px 0;
+    color: #fff;
+}
+
+.expertise-header {
+    margin-bottom: 80px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.expertise-header .section-title {
+    font-family: var(--font-display); /* 'Syne' */
+    font-size: 4rem;
+    line-height: 1;
+    margin: 0;
+}
+
+.italic-accent {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--accent-yellow); /* Elegant Yellow */
+    font-weight: 400;
+}
+
+.section-sub {
+    font-family: var(--font-body); /* 'Manrope' */
+    color: #888;
+    font-size: 1.1rem;
+    max-width: 300px;
+    text-align: right;
+}
+
+/* --- SERVICE ROW --- */
+.service-row {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.service-row:hover {
+    background-color: rgba(255,255,255,0.02);
+}
+
+/* Main Row Layout */
+.service-main {
+    padding: 40px 0;
+    display: grid;
+    grid-template-columns: 0.5fr 3fr 0.5fr; /* Number - Title - Arrow */
+    align-items: center;
+}
+
+.serv-num {
+    font-family: var(--font-body);
+    color: #555;
+    font-size: 1rem;
+}
+
+.serv-title {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+    margin: 0;
+}
+
+.service-row:hover .serv-title {
+    color: var(--accent-yellow);
+    padding-left: 20px; /* Subtle slide right */
+}
+
+.serv-arrow {
+    font-size: 2rem;
+    color: #555;
+    text-align: right;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.service-row:hover .serv-arrow {
+    color: #fff;
+    transform: rotate(45deg); /* Artistic tilt */
+}
+
+/* --- HIDDEN DETAILS (Reveal on Hover) --- */
+.service-details {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); /* Smooth ease */
+    padding-left: 15%; /* Align with title */
+    padding-right: 10%;
+}
+
+/* The Reveal Logic */
+.service-row:hover .service-details {
+    max-height: 200px; /* Enough space for text */
+    opacity: 1;
+    padding-bottom: 40px;
+}
+
+.service-details p {
+    font-family: var(--font-body);
+    color: #ccc;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    max-width: 600px;
+}
+
+/* Clean Tags */
+.tags {
+    display: flex;
+    gap: 10px;
+}
+
+.tags span {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    border: 1px solid #333;
+    padding: 8px 16px;
+    border-radius: 50px; /* Pill shape */
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .expertise-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .section-sub { text-align: left; }
+    
+    .service-main {
+        grid-template-columns: 1fr auto; /* Stack number/title */
+        gap: 10px;
+    }
+    
+    .serv-num { display: none; } /* Hide number on mobile for space */
+    
+    .serv-title { font-size: 1.8rem; }
+    
+    .service-details { padding-left: 0; }
+    
+    /* Always show a bit of details or change interaction on mobile */
+    .service-row:hover .service-details { max-height: 300px; }
+}
+
+
+/* --- EDITORIAL REVIEW SECTION --- */
+.editorial-reviews {
+    background-color: #050505;
+    padding: 150px 0;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.review-container {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr; /* Asymmetrical Split */
+    gap: 80px;
+    align-items: center;
+}
+
+/* --- LEFT: CONTENT SIDE --- */
+.review-content {
+    position: relative;
+    padding-right: 40px;
+}
+
+.quote-icon {
+    font-family: var(--font-display);
+    font-size: 6rem;
+    color: var(--accent-yellow);
+    line-height: 1;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.text-wrapper {
+    min-height: 220px; /* Prevents jumping */
+}
+
+.quote-text {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1.3;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Hide State for JS Transition */
+.quote-text.hide-text {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Meta & Controls */
+.review-meta {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 30px;
+}
+
+.meta-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-family: var(--font-display);
+}
+
+.meta-info span {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Controls */
+.review-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.control-btn {
+    background: none;
+    border: 1px solid #333;
+    color: #fff;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.control-btn:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+}
+
+/* Progress Bar */
+.progress-track {
+    width: 100px;
+    height: 2px;
+    background: #333;
+    position: relative;
+    overflow: hidden;
+}
+
+#progress-fill {
+    height: 100%;
+    background: var(--accent-yellow);
+    width: 0%;
+    /* Transition controlled by JS */
+}
+
+/* --- RIGHT: VISUAL SIDE --- */
+.review-visual {
+    position: relative;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* The Image Mask */
+.image-mask {
+    width: 100%;
+    height: 100%;
+    border-radius: 150px 150px 0 0; /* Arch Shape */
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+
+#review-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.6s ease;
+    transform: scale(1);
+    opacity: 1;
+    filter: grayscale(20%);
+}
+
+/* Hide State for Image */
+#review-image.hide-img {
+    transform: scale(1.1);
+    opacity: 0;
+}
+
+/* Background Decoration */
+.decor-circle {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 50%;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .review-container {
+        grid-template-columns: 1fr; /* Stack vertically */
+        gap: 40px;
+    }
+
+    .review-content {
+        order: 2; /* Text below image on mobile */
+        padding-right: 0;
+        text-align: center;
+    }
+
+    .review-visual {
+        order: 1;
+        height: 350px;
+    }
+
+    .image-mask {
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .review-meta {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .quote-text { font-size: 1.8rem; }
+}
+
+
+/* --- FAQ SECTION --- */
+.faq-section {
+    background-color: #050505;
+    padding: 150px 0;
+    color: #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.faq-container {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr; /* Left narrower, Right wider */
+    gap: 80px;
+    align-items: start;
+}
+
+/* --- LEFT: STICKY HEADER --- */
+.faq-header-sticky {
+    position: sticky;
+    top: 120px; /* Stick below navbar */
+}
+
+.faq-header-sticky .section-title {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 30px;
+}
+
+.faq-sub {
+    font-family: var(--font-body);
+    color: #888;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    max-width: 300px;
+    line-height: 1.6;
+}
+
+.faq-link {
+    font-family: var(--font-display);
+    color: var(--accent-yellow);
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.faq-link:hover {
+    border-bottom: 1px solid var(--accent-yellow);
+}
+
+/* --- RIGHT: ACCORDION LIST --- */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: background-color 0.3s;
+}
+
+.faq-question {
+    padding: 30px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.q-num {
+    font-family: 'Courier New', monospace;
+    color: var(--accent-yellow);
+    font-size: 0.9rem;
+    margin-right: 30px;
+    opacity: 0.7;
+}
+
+.faq-question h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    flex-grow: 1;
+    margin: 0;
+    padding-right: 20px;
+    transition: color 0.3s;
+}
+
+.q-icon {
+    font-size: 2rem;
+    font-weight: 300;
+    color: #555;
+    transition: transform 0.4s ease, color 0.3s;
+}
+
+/* --- ACTIVE STATE --- */
+.faq-item.active .faq-question h3 {
+    color: #fff;
+}
+
+.faq-item.active .q-icon {
+    transform: rotate(45deg); /* Turn + into x */
+    color: var(--accent-yellow);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px; /* Enough height for content */
+}
+
+.faq-answer p {
+    padding-bottom: 30px;
+    padding-left: 55px; /* Align with title (skipping number) */
+    color: #ccc;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 90%;
+}
+
+/* Highlight keywords in answers */
+.faq-answer strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .faq-container {
+        grid-template-columns: 1fr; /* Stack vertical */
+        gap: 50px;
+    }
+
+    .faq-header-sticky {
+        position: relative; /* Unstick on mobile */
+        top: 0;
+    }
+
+    .faq-header-sticky .section-title {
+        font-size: 3rem;
+    }
+
+    .faq-question h3 {
+        font-size: 1.2rem;
+    }
+
+    .q-num { margin-right: 15px; font-size: 0.8rem; }
+    .faq-answer p { padding-left: 0; }
+    
+    /* Adjust max-height for mobile text wrapping */
+    .faq-item.active .faq-answer { max-height: 300px; }
+}
+
+/* --- WRAPPER (Positioning) --- */
+.nav-wrapper {
+    position: fixed;
+    top: 25px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+    padding: 0 20px;
+}
+
+/* --- THE GALLERY BAR (Glass Pill) --- */
+.gallery-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1100px;
+    height: 65px;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 100px; /* Full Pill Shape */
+    padding: 0 8px 0 30px; /* Padding adjusted for button on right */
+    transition: all 0.3s ease;
+}
+
+/* 1. BRAND IDENTITY */
+.brand-identity {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: #fff;
+    flex-shrink: 0; /* Prevents name from squashing */
+}
+
+.brand-name {
+    font-family: var(--font-display); /* 'Syne' */
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: -0.5px;
+    position: relative;
+}
+
+.copyright {
+    font-size: 0.6rem;
+    vertical-align: top;
+    margin-left: 2px;
+    color: #666;
+    font-weight: 400;
+}
+
+.divider {
+    width: 1px;
+    height: 15px;
+    background: rgba(255,255,255,0.2);
+    transform: rotate(15deg); /* Artistic tilt */
+}
+
+.brand-role {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.85rem;
+    color: #888;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+/* 2. CENTER LINKS */
+.nav-list {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: #ccc;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-list a:hover {
+    color: #fff;
+}
+
+/* Dot Appear Effect on Hover */
+.nav-list a::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    width: 4px;
+    height: 4px;
+    background: var(--accent-yellow);
+    border-radius: 50%;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-list a:hover::after {
+    transform: translateX(-50%) scale(1);
+}
+
+/* 3. NAV ACTIONS */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-oval {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    color: #000;
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    transition: transform 0.3s ease, background-color 0.3s;
+}
+
+.contact-oval:hover {
+    background: var(--accent-yellow);
+    transform: scale(1.05);
+}
+
+.dot-status {
+    width: 6px;
+    height: 6px;
+    background: #000;
+    border-radius: 50%;
+    animation: pulse-black 2s infinite;
+}
+
+@keyframes pulse-black {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+/* --- HAMBURGER BUTTON (Mobile) --- */
+.mobile-btn {
+    display: none; /* Hidden on Desktop */
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    background: #222;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 10px; /* Space from contact btn if visible */
+}
+
+.mobile-btn .line {
+    width: 20px;
+    height: 2px;
+    background: #fff;
+    margin: 0 auto;
+    transition: transform 0.3s;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    /* Hide Desktop Links */
+    .nav-list { display: none; }
+    
+    /* Hide "Strategist" text on small screens to save space */
+    .divider, .brand-role { display: none; }
+    
+    /* Show Mobile Button */
+    .mobile-btn { display: flex; }
+    
+    /* Adjust Button Size */
+    .contact-oval { padding: 10px 18px; font-size: 0.8rem; }
+    
+    .gallery-nav {
+        padding-left: 20px; /* Adjust padding */
+        padding-right: 6px;
+    }
+    
+    .brand-name { font-size: 1rem; }
+}
+
+/* --- MOBILE OVERLAY --- */
+.minimal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: #050505;
+    z-index: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.minimal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.overlay-links {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: center;
+}
+
+.overlay-links a {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.overlay-links a:hover {
+    color: var(--accent-yellow);
+}
+/* --- THE GALLERY BAR (Updated with Neon Shadow) --- */
+.gallery-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1100px;
+    height: 65px;
+    
+    /* Glass Background */
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    
+    /* --- THE NEON FIX --- */
+    /* 1. The Border: Slight yellow tint */
+    border: 1px solid rgba(255, 230, 0, 0.3); 
+    
+    /* 2. The Shadow: Two layers for a "Neon" look */
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.8),      /* Deep drop shadow for lift */
+        0 0 25px rgba(255, 230, 0, 0.25);    /* The Yellow Neon Glow */
+
+    border-radius: 100px;
+    padding: 0 8px 0 30px;
+    transition: all 0.3s ease;
+}
+
+/* Hover State: Make it pulse slightly brighter */
+.gallery-nav:hover {
+    border-color: rgba(255, 230, 0, 0.6);
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.8),
+        0 0 35px rgba(255, 230, 0, 0.4); /* Brighter on hover */
+}
+
+/* Staggered Animation when active */
+.minimal-overlay.active a { opacity: 1; transform: translateY(0); }
+.minimal-overlay.active a:nth-child(1) { transition-delay: 0.1s; }
+.minimal-overlay.active a:nth-child(2) { transition-delay: 0.2s; }
+.minimal-overlay.active a:nth-child(3) { transition-delay: 0.3s; }
+.minimal-overlay.active a:nth-child(4) { transition-delay: 0.4s; }
+
+/* Toggle Animation */
+.mobile-btn.active .top { transform: translateY(4px) rotate(45deg); }
+.mobile-btn.active .bottom { transform: translateY(-4px) rotate(-45deg); }
+
+
+/* Animation Keyframes */
+@keyframes ticker-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-25%); } /* Adjust based on number of items */
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .footer-meta {
+        grid-template-columns: 1fr; /* Stack columns */
+        gap: 40px;
+        text-align: center;
+    }
+    
+    .center-align, .right-align { text-align: center; }
+    
+    .ticker-item {
+        font-size: 3rem; /* Smaller text on mobile */
+    }
+    
+    .broadcast-bar { padding: 30px 0; }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+    .hero-title { font-size: 3.5rem; }
+    .work-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .footer-content { flex-direction: column; align-items: flex-start; gap: 50px; }
+    .footer-title { font-size: 3rem; }
+    .navbar { position: relative; padding: 20px; }
+    .nav-links { display: none; } /* Simplification for mobile */
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (Add to bottom of CSS)
+   ========================================= */
+
+/* --- TABLETS & SMALL LAPTOPS (Max Width: 1024px) --- */
+@media (max-width: 1024px) {
+    .container {
+        width: 90%; /* Give content more room on smaller screens */
+    }
+
+    /* Tame the massive heading */
+    .hero-title {
+        font-size: 4rem; 
+    }
+
+    /* Adjust Grid logic */
+    .work-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columns instead of complex masonry */
+        grid-template-rows: auto;
+    }
+
+    .work-item.large {
+        grid-row: auto; /* Reset the tall item */
+        grid-column: span 2; /* Make the big item span across the top */
+        height: 400px;
+    }
+}
+
+/* --- TABLETS & PHONES (Max Width: 768px) --- */
+@media (max-width: 768px) {
+    
+    /* Navigation: Simplified for Mobile */
+    .navbar {
+        padding: 20px 5%;
+        background: rgba(10, 10, 10, 0.95); /* Dark background for readability */
+        backdrop-filter: blur(10px);
+    }
+
+    .nav-links {
+        display: none; /* Hides menu links (Requires JS for hamburger, hiding for cleanliness) */
+    }
+    
+    /* Show only the CTA button if you want, or hide all */
+    .nav-cta {
+        display: block;
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+
+    /* Hero Section: Stack Vertical */
+    .hero {
+        padding-top: 120px; /* Push down below fixed nav */
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .hero-split {
+        grid-template-columns: 1fr; /* Stack Text on top of Image */
+        gap: 50px;
+        text-align: center;
+    }
+
+    .hero-text {
+        margin: 0 auto;
+        order: 1; /* Text first */
+    }
+
+    .hero-sub {
+        margin: 0 auto 30px auto; /* Center paragraph */
+    }
+
+    .hero-btns {
+        justify-content: center; /* Center buttons */
+    }
+
+    /* Hero Image: Center and Scale */
+    .hero-visual {
+        order: 2; /* Image second */
+        height: 450px; /* Reduce height */
+    }
+
+    .image-arch {
+        max-width: 280px; /* Smaller arch */
+    }
+
+    .graphic-circle {
+        width: 350px;
+        height: 350px;
+    }
+
+    /* Grids: Single Column */
+    .services-grid {
+        grid-template-columns: 1fr; /* Stack services */
+        border: none;
+    }
+    
+    .service-card {
+        border-bottom: 1px solid #333; /* Add lines between stacked items */
+    }
+
+    .work-grid {
+        grid-template-columns: 1fr; /* Stack portfolio items */
+    }
+
+    .work-item, .work-item.large {
+        grid-column: auto;
+        height: 300px; /* Uniform height for mobile cards */
+    }
+
+    /* Footer */
+    .footer-title {
+        font-size: 2.5rem; /* Smaller footer text */
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 40px;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/* --- SMALL MOBILES (Max Width: 480px) --- */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 3rem; /* Fit text on small screens */
+    }
+
+    .btn {
+        padding: 12px 20px; /* Smaller buttons */
+        font-size: 0.9rem;
+    }
+
+    /* Fix the floating card overlap on small screens */
+    .floating-card {
+        right: 50%;
+        transform: translateX(50%); /* Center horizontally */
+        bottom: -20px; /* Pull it down slightly */
+        width: 90%; /* Make it wide */
+        text-align: center;
+        border-left: 1px solid var(--gray-dark);
+        border-top: 4px solid var(--accent-yellow); /* Move accent to top */
+    }
+
+    /* Disable float animation on very small screens to save battery/performance */
+    .floating-card {
+        animation: none; 
+    }
+}
+.barheadini{
+    color: rgb(228, 228, 17);
+}

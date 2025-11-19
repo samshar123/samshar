@@ -1,0 +1,159 @@
+/* --- WORKS PAGE STYLES (COMPACT & CREATIVE) --- */
+
+body {
+    background-color: #050505;
+    color: #fff;
+}
+
+/* Header - Reduced Padding & Size */
+.works-header {
+    padding-top: 140px; /* Less top space */
+    padding-bottom: 0px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    margin-bottom: 0px;
+}
+
+.page-title {
+    font-family: var(--font-display);
+    font-size: 3.5rem; /* Much smaller, sharper title */
+    line-height: 1;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.italic-yellow {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--accent-yellow);
+    font-weight: 400;
+}
+
+.page-sub {
+    font-family: 'Courier New', monospace;
+    color: var(--gray-light);
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+}
+
+/* --- COMPACT MASONRY GRID --- */
+.masonry-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 Columns */
+    /* TIGHTER GAPS: Row 50px, Column 30px */
+    gap: 50px 30px; 
+    padding-bottom: 80px;
+    max-width: 1000px; /* Constrain width for tighter look */
+    margin: 0 auto;
+}
+
+/* Reduced Stagger Effect */
+.offset-down {
+    margin-top: 60px; /* Reduced from 150px */
+}
+
+/* --- PROJECT CARD (SCALED DOWN) --- */
+.project-card {
+    cursor: pointer;
+    position: relative;
+    display: block;
+    text-decoration: none;
+}
+
+.card-image {
+    position: relative;
+    width: 100%;
+    /* SMALLER IMAGE HEIGHT */
+    height: 340px; 
+    overflow: hidden;
+    border-radius: 6px;
+    margin-bottom: 15px; /* Closer text */
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), filter 0.5s;
+    filter: grayscale(100%);
+}
+
+/* Hover Interactions */
+.project-card:hover .card-image img {
+    transform: scale(1.08);
+    filter: grayscale(0%);
+}
+
+.overlay-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(255,255,255,0.95);
+    color: #000;
+    padding: 10px 25px; /* Smaller button */
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+}
+
+.project-card:hover .overlay-btn {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Card Meta Text - Scaled Down */
+.meta-top {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem; /* Smaller tech font */
+    color: var(--accent-yellow);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.project-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem; /* Much smaller, cleaner title */
+    color: #fff;
+    margin: 0;
+    line-height: 1.2;
+    transition: color 0.3s;
+}
+
+.project-card:hover .project-title {
+    color: var(--accent-yellow);
+}
+
+/* --- FOOTER --- */
+.minimal-footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid #222;
+    color: #555;
+    font-family: 'Courier New', monospace;
+    font-size: 0.7rem;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .page-title { font-size: 2.5rem; }
+    
+    .masonry-grid {
+        grid-template-columns: 1fr; /* Single column stack */
+        gap: 40px;
+    }
+    
+    .offset-down { margin-top: 0; } /* Remove stagger on mobile */
+    
+    .card-image { height: 280px; } /* Even smaller on mobile */
+    
+    .project-title { font-size: 1.5rem; }
+}
