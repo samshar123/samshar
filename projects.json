@@ -1,17 +1,16 @@
 [
     {
         "id": 1,
-        "company": "CRONOMIND AI",
-        "category": "Automation",
-        "title": "Building the AI-First Ecosystem",
-        "thumbnail": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-        "heroImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=80",
-        "challenge": "Cronomind needed to enter a saturated CRM market. The challenge was to position them not just as a tool, but as an intelligent partner that automates business logic.",
-        "solution": "We architected a brand identity centered around 'The AI Workforce.' We built a custom Python-based backend that integrated with the marketing site to demonstrate live automation during the demo phase.",
+        "company": "KINDLED SERVICES",
+        "category": "Marketing Strategist",
+        "title": "Heading as the strategy execution officer",
+        "thumbnail": "../Images/Works/kindled.svg",
+        "heroImage": "../Images/Works/kindled.svg",
+        "challenge": "Kindled is a service and product based mental wellness startup in Kerala. We want to focus on both the service side and the app side at the same time, increase app downloads, and increase footfall for our offline programs.",
+        "solution": "Developed a comprehensive product and service based marketing and sales strategy that gives importance to SSM and SEM. The plan directs new generation tech friendly leads into the app and guides traditional consultation seekers to the service team. I also created a strategy for social media engagement with fun elements to encourage people to interact and respond.",
         "results": [
-            "300% Increase in Demo Bookings",
-            "45% Reduction in CAC",
-            "Featured in TechDaily"
+            "50% Increase in Consultaion booking",
+            "25% Increase in App download"
         ],
         "gallery": [
             "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
@@ -20,10 +19,10 @@
     },
     {
         "id": 2,
-        "company": "KINDLED SERVICES",
+        "company": "Unparent",
         "category": "SMM",
         "title": "The 'Unparent' Viral Movement",
-        "thumbnail": "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&w=800&q=80",
+        "thumbnail": "../Images/Works/unparent.svg",
         "heroImage": "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&w=1600&q=80",
         "challenge": "Mental health marketing often feels clinical and cold. Kindled needed to reach parents of toddlers in a way that felt supportive, not judgmental.",
         "solution": "We launched 'Unparent'—an offline camp supported by an emotional digital campaign. We used raw, unfiltered parenting stories on Instagram to build community trust before the event launch.",

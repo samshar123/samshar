@@ -53,3 +53,58 @@ document.addEventListener("DOMContentLoaded", () => {
             body.style.overflow = 'auto';
         }
     }
+
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const stackWrapper = document.getElementById('home-stack-wrapper');
+
+        fetch('projects.json')
+            .then(response => response.json())
+            .then(data => {
+                // 1. Slice only the first 5 projects
+                const featuredProjects = data.slice(0, 5);
+
+                // 2. Loop and create HTML for each
+                featuredProjects.forEach((project, index) => {
+                    // Calculate top position for sticky effect (10vh + index*2vh)
+                    const topValue = 10 + (index * 2);
+                    // Calculate ID for CSS targeting if needed
+                    const cardId = `card-${index + 1}`;
+                    // Format index (01, 02...)
+                    const num = (index + 1).toString().padStart(2, '0');
+
+                    const html = `
+                        <div class="stack-card" id="${cardId}" style="top: ${topValue}vh;">
+                            <div class="card-body">
+                                <div class="card-left">
+                                    <span class="stack-num">${num}</span>
+                                    <h3>${project.company}</h3>
+                                    <div class="stack-tags">
+                                        <span>${project.category}</span>
+                                    </div>
+                                    <p>${project.title}</p> <a href="project.html?id=${project.id}" class="btn-stack">VIEW CASE STUDY ↗</a>
+                                </div>
+                                <div class="card-right">
+                                    <img src="${project.thumbnail}" alt="${project.company}">
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    stackWrapper.insertAdjacentHTML('beforeend', html);
+                });
+
+                // 3. Add the Final CTA Card (Static)
+                const finalTop = 10 + (featuredProjects.length * 2);
+                const finalCardHTML = `
+                    <div class="stack-card final-cta" style="top: ${finalTop}vh;">
+                        <div class="card-body centered">
+                            <h2>SEEN ENOUGH?</h2>
+                            <a href="works.html" class="big-cta-btn">EXPLORE FULL PORTFOLIO</a>
+                        </div>
+                    </div>
+                `;
+                stackWrapper.insertAdjacentHTML('beforeend', finalCardHTML);
+            })
+            .catch(error => console.error('Error loading projects:', error));
+    });
