@@ -41,10 +41,48 @@
         "company": "DOTCO NEXTGEN",
         "category": "Growth",
         "title": "Scaling Startup User Acquisition",
-        "thumbnail": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+        "thumbnail": "../Images/Works/dotco.svg",
         "heroImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
         "challenge": "Dotco had a great MVP but zero users. They needed rapid acquisition with a very limited budget.",
         "solution": "We implemented a 'High-Velocity Testing' framework. Running micro-campaigns across SEM and Social to find the lowest cost-per-acquisition (CPA) channel, then scaling it aggressively.",
+        "results": [
+            "0 to 5,000 Users in 3 Months",
+            "40% Drop in CPA",
+            "Seed Funding Secured"
+        ],
+        "gallery": [
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&w=800&q=80"
+        ]
+    },
+     {
+        "id": 4,
+        "company": "RISE TBI",
+        "category": "Growth",
+        "title": "Marketing Strategist Driving Growth for RISE TBI",
+        "thumbnail": "../Images/Works/rise.svg",
+        "heroImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
+        "challenge": "RISE TBI needed to increase footfall, event participation, and workspace conversions in a competitive startup ecosystem. Despite strong programs like Elevate and Evolve, awareness, engagement, and lead conversion across the student and local entrepreneur community were inconsistent.",
+        "solution": "I developed a complete, data-driven marketing strategy for RISE TBI that covered acquisition, engagement, and conversion. I created targeted funnels to reach the right audience, designed high-engagement campaigns for incubation programs and events, and implemented conversion-focused messaging with performance tracking. This approach increased event participation, improved daily footfall, and converted visitors into paying workspace users, directly boosting TBI’s revenue and ecosystem activity.",
+        "results": [
+            "0 to 5,000 Users in 3 Months",
+            "40% Drop in CPA",
+            "Seed Funding Secured"
+        ],
+        "gallery": [
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+            "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&w=800&q=80"
+        ]
+    },
+     {
+        "id": 5,
+        "company": "CRONOMIND AI",
+        "category": "Growth",
+        "title": "Cronomind AI – Pre-Sales Automation Product",
+        "thumbnail": "../Images/Works/crono.svg",
+        "heroImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
+        "challenge": "Cronomind AI needed a scalable marketing and sales system capable of generating consistent, high-quality leads from Google and social media while converting them efficiently into customers. As a new product, the brand required stronger visibility and a reliable acquisition engine to support early revenue.",
+        "solution": "I created a comprehensive SEM, SMM, and sales strategy focused on high-intent lead generation and measurable conversions. I structured performance-driven campaigns across search and social platforms and built a conversion-optimized funnel tailored to the pre-sales automation audience. This strategy helped convert digital traffic into qualified customers and enabled strong early revenue growth for the product.",
         "results": [
             "0 to 5,000 Users in 3 Months",
             "40% Drop in CPA",

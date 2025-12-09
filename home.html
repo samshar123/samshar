@@ -374,110 +374,100 @@
     </div>
 </section>
 
-<section id="testimonials" class="section editorial-reviews">
-    <div class="container review-container">
+<section id="testimonials" class="section modern-reviews">
+    <div class="bg-watermark">”</div>
+
+    <div class="container centered-container">
         
-        <div class="review-content">
-            <div class="quote-icon">“</div>
+        <div class="review-main-content">
             
-            <div class="text-wrapper">
-                <h2 id="review-quote" class="quote-text">
+            <div class="text-wrapper-centered">
+                <h2 id="review-quote" class="modern-quote-text fade-in-up">
                     Samshar isn't just a marketer; he's an architect. The 'Unparent' campaign didn't just get views; it created a movement.
                 </h2>
             </div>
 
-            <div class="review-meta">
-                <div class="meta-info">
-                    <h4 id="review-author">Johnathan R.</h4>
+            <div class="review-bottom-bar">
+                
+                <div class="meta-info-centered">
+                    <h4 id="review-author">Isra Suahil</h4>
                     <span id="review-role">CEO @ Kindled Services</span>
                 </div>
                 
-                <div class="review-controls">
-                    <button class="control-btn" onclick="prevSlide()">←</button>
-                    <div class="progress-track">
-                        <div id="progress-fill"></div>
+                <div class="modern-controls">
+                    <button class="mod-btn prev-btn" onclick="prevSlide()">
+                        <i class="fas fa-arrow-left"></i> </button>
+                    
+                    <div class="slide-dots">
+                        <span class="dot active" id="dot-0"></span>
+                        <span class="dot" id="dot-1"></span>
+                        <span class="dot" id="dot-2"></span>
+                        <span class="dot" id="dot-3"></span>
                     </div>
-                    <button class="control-btn" onclick="nextSlide()">→</button>
-                </div>
-            </div>
-        </div>
 
-        <div class="review-visual">
-            <div class="image-mask">
-                <img id="review-image" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80" alt="Client Portrait">
+                    <button class="mod-btn next-btn" onclick="nextSlide()">
+                         <i class="fas fa-arrow-right"></i> </button>
+                </div>
+
             </div>
-            <div class="decor-circle"></div>
         </div>
 
     </div>
 </section>
 
 <script>
+    // Data (Corrected Author Names based on your previous prompts)
     const reviews = [
         {
             quote: "Samshar isn't just a marketer; he's an architect. The 'Unparent' campaign didn't just get views; it created a movement.",
-            author: "Johnathan R.",
-            role: "CEO @ Kindled Services",
-            img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
+            author: "Isra Suahil",
+            role: "CEO @ Kindled Services"
         },
         {
             quote: "We needed rapid growth for our MVP launch. His growth strategies were precise, cutting our CPA by 40% in just two weeks.",
-            author: "Sarah M.",
-            role: "Founder @ Dotco",
-            img: "https://images.unsplash.com/photo-1573496359-7013c53bca1d?auto=format&fit=crop&w=800&q=80"
+            author: "Shahil AK",
+            role: "Founder @ Cronomind"
         },
         {
             quote: "Data-driven to the core. While others guessed, Samshar brought us dashboards and hard metrics. The ROI spoke for itself.",
-            author: "Arjun K.",
-            role: "Director @ Zodha",
-            img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80"
+            author: "Dr.Suhail",
+            role: "Director @ Zodha"
         },
         {
             quote: "A rare blend of creative vision and strategic execution. He helped us define a brand voice that actually resonates with Gen-Z.",
-            author: "Elena D.",
-            role: "CMO @ Rise TBI",
-            img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80"
+            author: "Amila Anjum",
+            role: "COO @ Rise TBI"
         }
     ];
 
     let currentIndex = 0;
     let slideInterval;
-    const duration = 4000; // 4 Seconds
+    const duration = 5000; // Increased to 5 seconds for better readability of large text
 
     // Elements
     const quoteEl = document.getElementById('review-quote');
     const authorEl = document.getElementById('review-author');
     const roleEl = document.getElementById('review-role');
-    const imgEl = document.getElementById('review-image');
-    const progressFill = document.getElementById('progress-fill');
+    const dots = document.querySelectorAll('.dot');
 
     function updateSlide(index) {
-        // 1. Fade Out Logic (CSS Classes)
-        quoteEl.classList.add('hide-text');
-        imgEl.classList.add('hide-img');
+        // 1. Fade Out State
+        quoteEl.classList.add('animating-out');
         
-        // Reset Progress Bar
-        progressFill.style.transition = 'none';
-        progressFill.style.width = '0%';
-
         setTimeout(() => {
             // 2. Update Content
             quoteEl.innerText = reviews[index].quote;
             authorEl.innerText = reviews[index].author;
             roleEl.innerText = reviews[index].role;
-            imgEl.src = reviews[index].img;
 
-            // 3. Fade In Logic
-            quoteEl.classList.remove('hide-text');
-            imgEl.classList.remove('hide-img');
+            // Update Dots
+            dots.forEach(dot => dot.classList.remove('active'));
+            document.getElementById(`dot-${index}`).classList.add('active');
+
+            // 3. Fade In State
+            quoteEl.classList.remove('animating-out');
             
-            // Restart Progress Bar Animation
-            setTimeout(() => {
-                progressFill.style.transition = `width ${duration}ms linear`;
-                progressFill.style.width = '100%';
-            }, 50);
-
-        }, 400); // Match CSS transition time
+        }, 500); // Wait 500ms for fade out animation to finish
     }
 
     function nextSlide() {
@@ -499,16 +489,12 @@
 
     // Initialize
     document.addEventListener('DOMContentLoaded', () => {
+        // Set initial dot active
+        document.getElementById(`dot-0`).classList.add('active');
         resetTimer();
-        // Start initial progress bar
-        setTimeout(() => {
-            progressFill.style.transition = `width ${duration}ms linear`;
-            progressFill.style.width = '100%';
-        }, 50);
     });
 
 </script>
-
 
 <section id="faq" class="section faq-section">
     <div class="container faq-container">
